@@ -19,6 +19,9 @@ import InfoPage from '../InfoPage/InfoPage';
 
 //import workout app pages
 //import WOARegisterPage from '../'
+import NewWorkoutPage from '../NewWorkouPage/NewWorkoutPage';
+import NewExercisePage from '../NewExercisePage/NewExercisePage';
+import EditProfilePage from '../EditProfilePage/EditProfilePage';
 
 import './App.css';
 
@@ -57,6 +60,25 @@ class App extends Component {
               exact
               path="/info"
               component={InfoPage}
+            />
+            {/* Add routes for the workout App, they will navigate to your pages,
+            Add a route for New Workout Page, Add New Exercises Page, and Edit Profile Page */}
+            <Route
+              exact
+              path ="/newworkout"
+              component={NewWorkoutPage}
+              />
+            {/* Add Route for new exercise page */}
+            <Route
+              exact
+              path="/addnewexercise"
+              component={NewExercisePage}
+              />
+            {/* add new route for edit profile page here */}
+            <Route
+              exact
+              path="/editprofile"
+              component={EditProfilePage}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
