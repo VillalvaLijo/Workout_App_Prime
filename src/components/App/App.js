@@ -17,6 +17,9 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 
+//import workout app pages
+//import WOARegisterPage from '../'
+
 import './App.css';
 
 class App extends Component {
