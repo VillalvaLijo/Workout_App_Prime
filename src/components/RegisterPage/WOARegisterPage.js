@@ -49,7 +49,7 @@ render(){
                         type = "text"
                         name="username"
                         value={this.state.username}
-                        onChnage={this.handleInputChangeFor('username')}
+                        onChange={this.handleInputChangeFor('username')}
                         />
                     </label>
                 </div>
@@ -60,7 +60,7 @@ render(){
                             type="password"
                             name="password"
                             value={this.state.password}
-                            onChnage={this.handleInputChangeFor('password')}
+                            onChange={this.handleInputChangeFor('password')}
                         />
                     </label>
                 </div>
