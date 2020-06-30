@@ -7,6 +7,10 @@ function* registerUser(action) {
     // clear any existing error on the registration page
     yield put({ type: 'CLEAR_REGISTRATION_ERROR' });
 
+    //console log action payload to see what you are getting from the 
+    //registration page
+    console.log("inside registerUser Saga, action.payload:", action.payload);
+
     // passes the username and password from the payload to the server
     yield axios.post('/api/user/register', action.payload);
 

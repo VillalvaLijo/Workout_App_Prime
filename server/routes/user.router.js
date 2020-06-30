@@ -26,6 +26,11 @@ router.post('/register', (req, res, next) => {
   const height = req.body.height;
   const weight = req.body.weight;
 
+  //console.log req.boy to get an understanding of what is being passed and why it
+  //isn't being sent to the database
+
+  console.log("inside post, /register, req.body:",req.body);
+
   const queryText = 'INSERT INTO "user" (username, password, email, height, weight) VALUES ($1, $2, $3, $4, $5) RETURNING id';  //?RID
   pool.query(queryText, [username, password, email, height, weight])
     .then(() => res.sendStatus(201))
