@@ -12,7 +12,7 @@ class WOARegisterPage extends Component {
       };
 
       registerUser = (event) => {  // use this function to dispatch the input 
-                                    //from the registration form to register user reducer
+                                    //from the registration form to register user saga in registrationSaga
         event.preventDefault();
     
         if (this.state.username && this.state.password) {

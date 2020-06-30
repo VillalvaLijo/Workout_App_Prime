@@ -15,12 +15,19 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
+
+//update this so that it registers the new user with all the other attributes from the users profile
+//height, weight, email, username and password.
+//re-write the sql query as well.
 router.post('/register', (req, res, next) => {  
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
+  const email = req.body.email;
+  const height = req.body.height;
+  const weight = req.body.weight;
 
-  const queryText = 'INSERT INTO "user" (username, password) VALUES ($1, $2) RETURNING id';
-  pool.query(queryText, [username, password])
+  const queryText = 'INSERT INTO "user" (username, password, email, height, weight) VALUES ($1, $2, $3, $4, $5) RETURNING id';  //?RID
+  pool.query(queryText, [username, password, email, height, weight])
     .then(() => res.sendStatus(201))
     .catch(() => res.sendStatus(500));
 });
