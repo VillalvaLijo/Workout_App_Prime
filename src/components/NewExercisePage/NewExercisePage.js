@@ -1,5 +1,7 @@
 import React from 'react';
 import {Component} from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
 
 //this component should allow a new user to enter in a new exercise anf then 
 //this compoent will send a post request to the server so that the new exercise is
@@ -14,6 +16,7 @@ class NewExercisePage extends Component {
     submitExercise = () =>{
         console.log("submit exercise button clicked");
         console.log("this.state.newExercise", this.state.newExercise);
+        this.postExerciseToServer();
     }
 
     handleInputChangeForNewExercise = (event) =>{
@@ -24,6 +27,16 @@ class NewExercisePage extends Component {
     }
 
     // write post request to server here.
+    postExerciseToServer = () => {
+        const data ={
+            exercise: this.state.newExercise,
+            user_id: this.props.user.id
+        };
+        axios.post('/api/exercises', data)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    };
+
 
 
    render(){
@@ -45,5 +58,9 @@ class NewExercisePage extends Component {
        )
    } 
 }
+const mapStateToProps = state => ({
+    user: state.user,
+  });
 
-export default NewExercisePage;
+
+export default connect(mapStateToProps)(NewExercisePage);
