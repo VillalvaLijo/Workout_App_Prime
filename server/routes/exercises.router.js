@@ -19,5 +19,11 @@ router.post('/', (req,res) => {
         });
 });
 
+//write GET request to get user exercies
+//figure out how to select user exercise from only the user id that is given. 
+
+//use 
+//SELECT * FROM "exercises" WHERE "user_id" = 'user id';
+//going to have to pass the get request user id.
 
 module.exports = router;
