@@ -23,6 +23,8 @@ class NewExercisePage extends Component {
         })
     }
 
+    // write post request to server here.
+
 
    render(){
        return(
