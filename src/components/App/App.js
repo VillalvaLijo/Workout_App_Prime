@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 
 //import workout app pages
 //import WOARegisterPage from '../'
+import UserProfilePage from '../UserProfilePage/UserProfilePage';
 import NewWorkoutPage from '../NewWorkouPage/NewWorkoutPage';
 import NewExercisePage from '../NewExercisePage/NewExercisePage';
 import EditProfilePage from '../EditProfilePage/EditProfilePage';
@@ -52,7 +53,7 @@ class App extends Component {
             <ProtectedRoute
               exact
               path="/home"
-              component={UserPage}
+              component={UserProfilePage}
             />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}

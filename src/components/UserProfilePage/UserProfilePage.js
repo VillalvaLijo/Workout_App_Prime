@@ -12,9 +12,47 @@ import Nav from '../Nav/Nav';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
+import LogOutButton from '../LogOutButton/LogOutButton';
+
 
 class UserProfilePage extends Component{
+    //establish a new page that the user navigates through the app in 
+
+    navToWorkoutPage = () =>{
+        //navigate to the new workout page so the user can enter in a new workout.
+
+        console.log("Inside navToWorkoutPage function, New Workout Button Clicked")
+        this.props.history.push("/newworkout");
+    }
+
+    navToNewExercisePage = () => {
+        //Navigate to the new exercise page where the user can add a new exercise to their database of exercises.
+        console.log("New Workout Button pressed");
+
+        this.props.history.push("/addnewexercise");
+    }
+
+    navToEditProfilePage = () => {
+        //navigation to the edit profile page where we will use put to edit profile.
+        this.props.history.push("/editprofile");
+    }
+
+
+
+    render(){
+        return(
+            <div>
+                <h1>Welcome Back Username</h1>
+                <div><button onClick={this.navToWorkoutPage}>New Workout</button></div>
+                <div><button onClick = {this.navToNewExercisePage}>Add New Exercises</button></div>
+                <div><button onClick = {this.navToEditProfilePage}>Edit Profile</button></div>
+                <LogOutButton className="log-in" />
+            </div>
+        )
+
+    }
 
 }
 
+export default UserProfilePage;
 
