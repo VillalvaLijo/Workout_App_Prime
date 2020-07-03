@@ -26,4 +26,16 @@ router.post('/', (req,res) => {
 //SELECT * FROM "exercises" WHERE "user_id" = 'user id';
 //going to have to pass the get request user id.
 
+router.get('/', (req,res) => {
+    console.log("inside GET request on exercises.router, req.body:", req.body);
+    queryText = `SELECT * FROM "exercises";`
+
+    pool.query(queryText).then((result) => {
+        res.send(result.rows);
+    }).catch((error) => {
+        console.log("error in exercises GET", error)
+        res.sendStatus(500)
+    });
+})
+
 module.exports = router;
