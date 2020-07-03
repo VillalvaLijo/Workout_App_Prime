@@ -1,6 +1,7 @@
 import React from 'react';
 import {Component} from 'react';
 import {connect} from 'react-redux';
+import ExercisesDropDownMenu from '../ExercisesDropDownMenu/ExercisesDropDownMenu';
 
 
 class NewWorkoutPage extends Component {
@@ -34,7 +35,8 @@ class NewWorkoutPage extends Component {
        return(
            <div>
            <h1>New Workout Goes Here</h1>
-           <button onClick={this.recordExerciseSet}>New Exercise Set</button>
+           {/* <button onClick={this.recordExerciseSet}>New Exercise Set</button> */}
+           <ExercisesDropDownMenu/>
 
            {/* figure out a drop down menu here */}
            </div>
