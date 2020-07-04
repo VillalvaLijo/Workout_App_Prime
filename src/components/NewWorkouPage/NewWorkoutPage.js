@@ -2,9 +2,12 @@ import React from 'react';
 import {Component} from 'react';
 import {connect} from 'react-redux';
 import ExercisesDropDownMenu from '../ExercisesDropDownMenu/ExercisesDropDownMenu';
+import NewExerciseSetTable from '../newExerciseSetTable/newExerciseSetTable';
 
 
 class NewWorkoutPage extends Component {
+
+    co
 
     recordExerciseSet = () => {   
         // = (event) => introduce this if you have to.    
@@ -37,6 +40,13 @@ class NewWorkoutPage extends Component {
            <h1>New Workout Goes Here</h1>
            <button onClick={this.recordExerciseSet}>New Exercise Set</button>
            <ExercisesDropDownMenu/>
+
+           {this.props.reduxStore.selectedExercise.exerciseSelected //select for exercises selected in the reducer, have exercises selected be a boolean.
+                        ? <NewExerciseSetTable/>
+                        : <div>No Exercise Selected</div>
+                        }
+
+           {/* <newExerciseSetTable/> */}
 
            {/* figure out a drop down menu here */}
            </div>

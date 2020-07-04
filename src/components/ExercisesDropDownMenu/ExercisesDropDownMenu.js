@@ -58,11 +58,19 @@ class ExercisesDropDownMenu extends Component{
             id: id,
             user_id: user_id,
             name: name,
+            exerciseSelected: true,
         }
         this.setState({
             //headerTitle: name,
             listOpen: false,
         }) //resetThenSet(id, stateKey));
+
+        //write a dispatch to send selected exercise to selectedExerciseReducer so it can be accsesed
+        //by the create set table component
+        this.props.dispatch({       
+            type: 'NEW_EXERCISE_SET',
+            payload: selectedExercise,
+        });  
 
         console.log("inside selectItem, selected Exercise is:", selectedExercise);
         return selectedExercise;
