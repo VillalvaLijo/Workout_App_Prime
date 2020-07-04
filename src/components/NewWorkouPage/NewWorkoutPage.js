@@ -35,7 +35,7 @@ class NewWorkoutPage extends Component {
        return(
            <div>
            <h1>New Workout Goes Here</h1>
-           {/* <button onClick={this.recordExerciseSet}>New Exercise Set</button> */}
+           <button onClick={this.recordExerciseSet}>New Exercise Set</button>
            <ExercisesDropDownMenu/>
 
            {/* figure out a drop down menu here */}
