@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 class NewExerciseSetTable extends Component {
 
     state = {
-
+        
 
         exercisesArray: [], //push in new exercise set object whenever a new set is created
 
@@ -21,11 +21,17 @@ class NewExerciseSetTable extends Component {
         console.log("inside handle weight input");
     }
 
+    handleRepInput(){
+        console.log("inside handle rep input")
+    }
+
 
 
     addSet(){
         //create a render function that adds a set as the add set button is pressed
         console.log("inside add set");
+        let date = Date()
+        console.log("date", date);
     }
 
     setInput(){

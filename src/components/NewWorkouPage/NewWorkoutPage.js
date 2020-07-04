@@ -7,7 +7,10 @@ import NewExerciseSetTable from '../newExerciseSetTable/newExerciseSetTable';
 
 class NewWorkoutPage extends Component {
 
-    co
+    //figure out how you will call a one-time post on the calling of this component.
+    componentDidMount(){
+        //
+    }
 
     recordExerciseSet = () => {   
         // = (event) => introduce this if you have to.    
