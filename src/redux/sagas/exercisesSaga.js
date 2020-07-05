@@ -15,7 +15,7 @@ function* getExercisesFromServer(action){
     //write get request here with axios
     //console.log("Inside getExercises")
     try{
-        const exercisesResponse = yield axios.get('/api/exercises');//,[action.payload]);//send the get request user_id so the get can request user exercises by id.
+        const exercisesResponse = yield axios.get('/api/exercises', { params: {user_id : action.payload}});//,[action.payload]);//send the get request user_id so the get can request user exercises by id.
         //can't send data with get request consider sorting data client side and solving this problem later.
         //research query string url.
 

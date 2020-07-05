@@ -9,7 +9,21 @@ class NewWorkoutPage extends Component {
 
     //figure out how you will call a one-time post on the calling of this component.
     componentDidMount(){
-        //
+        //post user_id, date, and start_time to database to create a workout ID.
+        const user_id = this.props.reduxStore.user.id;
+        const workoutDate = Date();
+        const workoutStartTime = Date();
+        console.log("on NewWorkoutPage, componenet did mount: ", workoutDate);
+
+        this.props.dispatch({
+            type: 'POST_WORKOUT',
+            payload: {
+                user_id: user_id,
+                date: workoutDate,
+                start_time: workoutStartTime,
+            }
+        })
+
     }
 
     recordExerciseSet = () => {   

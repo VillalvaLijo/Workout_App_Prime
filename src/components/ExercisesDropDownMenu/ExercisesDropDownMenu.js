@@ -100,8 +100,12 @@ class ExercisesDropDownMenu extends Component{
 
     //get exercises, send dispatch to saga and then get exercises from server
     getExercises(){
+        console.log("inside get exercise in the drop down menu component, this.props.reduxStore.user.id", this.props.reduxStore.user.id);
         this.props.dispatch({       
             type: 'GET_EXERCISES',  
+            payload: {
+                user_id: this.props.reduxStore.user.id
+            }
         });
     }
     
