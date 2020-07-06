@@ -66,7 +66,8 @@ constructor(props){
 
         this.setState({
             previousSets: true,
-            exercisesArray: this.state.exercisesArray.push(newSet),
+            exerciseArray: this.state.exercisesArray.push(newSet),
+            //kitty: this.state.exercisesArray.push(newSet),
         });
         
         this.setInput();
@@ -77,16 +78,17 @@ constructor(props){
         //conditionally have a user input set.
         //dispatch exercise event to database
         console.log("inside Set Input in newExerciseSetTable, exercisesArray", this.state.exercisesArray);
+        console.log("typeof exercisesArray", typeof(this.state.exercisesArray));
     }
 
     renderPreviousSet(){
         if(this.state.previousSets===true){
-            let exerciseArray = this.state.exercisesArray.map((set)=>
+            let taco = this.state.exercisesArray.map((set)=>
             <tr>
                 <td>{set.weight}</td>
                 <td>{set.reps}</td>
             </tr>)
-            return exerciseArray;
+            return taco;
             
             
         }
@@ -114,12 +116,12 @@ constructor(props){
                             <td>{set.reps}</td>
                         </tr>)} */}
                         {this.renderPreviousSet()}
-                        <tr>
+                        {/* <tr>
                             <td>Previous</td>
                             <td>Sets</td>
                         </tr>
                         : <div className= "emptyDiv"></div>
-                        }
+                        } */}
                     <tr className="newExerciseSetTableInputRow">
                         {/* <td>{this.props.reduxStore.selectedExercise.</td> */}
                         <td><input
