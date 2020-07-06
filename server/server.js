@@ -29,7 +29,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 //create routes for all your routers to your database tables
 app.use('/api/exercises', exerciseRouter);
-app.use('/api/exercises', workoutsRouter);
+app.use('/api/workouts', workoutsRouter);
 
 // Serve static files
 app.use(express.static('build'));
