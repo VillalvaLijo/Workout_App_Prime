@@ -8,6 +8,7 @@ constructor(props){
     super(props);
 
     this.state = {
+        selectedExerciseId: '',
         previousSets: false,
         weight: '',
         reps: 0,
@@ -23,6 +24,26 @@ constructor(props){
     componentDidMount(){
         //get data from this.props.reduxStore.selectedExerciseReducer
         console.log("Inside component did mount newExerciseSetTable, this...selectedExerciseReducer", this.props.reduxStore.selectedExercise);
+        this.setState({
+            selectedExerciseId: this.props.reduxStore.selectedExercise.id,
+        })
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        console.log("Inside ComponentDidUpdate in newExerciseSetTable");
+        console.log("inside componentDidUpdate in newExerciseSetTable, prevState", prevState);
+        console.log("inside componentDidUpdate in newExerciseSetTable, prevProps", prevProps);
+        if(this.state.selectedExerciseId !== prevProps.reduxStore.selectedExercise.id){
+            console.log("The Selected Exercise has changed");
+            this.setState({
+                previousSets: false,
+                weight: '',
+                reps: 0,
+
+                exercisesArray: [],
+            })
+        }
+
     }
 
     handleWeightInput= (event)=>{
@@ -45,7 +66,7 @@ constructor(props){
         //create a render function that adds a set as the add set button is pressed
         //add workout_id to exercise event.
 
-
+        
         console.log("inside add set");
         let date = Date()
         console.log("date", date);
@@ -79,10 +100,21 @@ constructor(props){
         //dispatch exercise event to database
         console.log("inside Set Input in newExerciseSetTable, exercisesArray", this.state.exercisesArray);
         console.log("typeof exercisesArray", typeof(this.state.exercisesArray));
+        console.log("this.props.reduxStore.selectedExercise",this.props.reduxStore.selectedExercise);
+    }
+
+    sendSetsToDatabase(){
+        console.log("Sending Sets to data base");
+        console.log("this.state.exercisesArray[(this.state.exerciseArray.length)-1].exercise_id",this.state.exercisesArray[(this.state.exercisesArray.length)-1].exercise_id);
+        console.log("this.props.reduxStore.selectedExercise",this.props.reduxStore.selectedExercise);
     }
 
     renderPreviousSet(){
         if(this.state.previousSets===true){
+        if(this.state.exercisesArray.length != 0){
+        //if((this.state.exercisesArray[(this.state.exerciseArray.length)-1].exercise_id)===this.props.reduxStore.selectedExercise.id)
+        //{
+            {
             let taco = this.state.exercisesArray.map((set)=>
             <tr>
                 <td>{set.weight}</td>
@@ -92,7 +124,13 @@ constructor(props){
             
             
         }
+   // }
+    // else if((this.state.exerciseArray[(this.state.exercisesArray.length)-1].exercise_id)!== this.props.reduxStore.selectedExercise.id){
+    //     this.sendSetsToDatabase();
+    // }
     }
+}
+}
 
     //conditionally render the sets that were input before current set input, do this with
     //a boolean.
