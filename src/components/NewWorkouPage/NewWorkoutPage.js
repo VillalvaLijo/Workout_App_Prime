@@ -7,6 +7,10 @@ import NewExerciseSetTable from '../newExerciseSetTable/newExerciseSetTable';
 
 class NewWorkoutPage extends Component {
 
+    state = {
+        exercisesArray: []
+    }
+
     //figure out how you will call a one-time post on the calling of this component.
     componentDidMount(){
         //post user_id, date, and start_time to database to create a workout ID.
@@ -25,8 +29,33 @@ class NewWorkoutPage extends Component {
             }
         })
 
+        this.props.dispatch({
+            type: 'GET_EXERCISE_EVENTS',
+            payload: {
+                date: this.props.reduxStore.workout.id,
+            }
+
+    
+        });
+        }
+
+    componentDidUpdate(prevProps, prevState){
+        console.log("inside compoenDidUpdate NewWorkoutPage, prevProps", prevProps);
+        console.log("inside componentDidUpdate in NewWorkoutPage", this.props.reduxStore.selectedExercise);
+        // if( prevProps.reduxStore.selectedExercise.id !== this.props.reduxStore.selectedExecise.id){
+        //     this.renderSetTable();
+        // }
+        this.props.dispatch({
+            type: 'GET_EXERCISE_EVENTS',
+            payload: {
+                date: this.props.reduxStore.workout.id,
+            }
+        })
     }
 
+    renderSetTable(){
+        console.log("renderSetTable called.")
+    }
     recordExerciseSet = () => {   
         // = (event) => introduce this if you have to.    
         //event.preventDefault();

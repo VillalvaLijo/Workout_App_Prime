@@ -13,7 +13,7 @@ const userRouter = require('./routes/user.router');
 //include routes from your routes to your database tables
 const exerciseRouter = require('./routes/exercises.router');
 const workoutsRouter = require('./routes/workouts.router');
-
+const exercise_eventsRouter = require('./routes/exercise_events.router');
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -30,6 +30,7 @@ app.use('/api/user', userRouter);
 //create routes for all your routers to your database tables
 app.use('/api/exercises', exerciseRouter);
 app.use('/api/workouts', workoutsRouter);
+app.use('/api/exercise_events', exercise_eventsRouter);
 
 // Serve static files
 app.use(express.static('build'));

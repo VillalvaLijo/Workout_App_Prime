@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import axios from 'axios';
 
 class NewExerciseSetTable extends Component {
 constructor(props){
@@ -35,15 +36,23 @@ constructor(props){
         console.log("inside componentDidUpdate in newExerciseSetTable, prevProps", prevProps);
         if(this.state.selectedExerciseId !== prevProps.reduxStore.selectedExercise.id){
             console.log("The Selected Exercise has changed");
-            this.setState({
-                previousSets: false,
-                weight: '',
-                reps: 0,
-
-                exercisesArray: [],
-            })
+            this.clearState()
+            //this.refreshPage() //can brute force use this if you update the database
         }
 
+    }
+
+    // refreshPage() {              //can brute force use this if you update the database// but it is going to refresh the workout ID.
+    //     window.location.reload(false);
+    //   }
+    clearState(){
+        console.log("inside clearState")
+        
+        
+        // this.setState({
+         
+        //     exercisesArray: [],
+        // })
     }
 
     handleWeightInput= (event)=>{
@@ -85,11 +94,15 @@ constructor(props){
             reps: this.state.reps,
         }
 
+
+
         this.setState({
             previousSets: true,
             exerciseArray: this.state.exercisesArray.push(newSet),
             //kitty: this.state.exercisesArray.push(newSet),
         });
+
+        this.sendSetsToDatabase()
         
         this.setInput();
         //change the previousSets boolean to true. 
@@ -101,36 +114,57 @@ constructor(props){
         console.log("inside Set Input in newExerciseSetTable, exercisesArray", this.state.exercisesArray);
         console.log("typeof exercisesArray", typeof(this.state.exercisesArray));
         console.log("this.props.reduxStore.selectedExercise",this.props.reduxStore.selectedExercise);
+
+
     }
 
     sendSetsToDatabase(){
         console.log("Sending Sets to data base");
-        console.log("this.state.exercisesArray[(this.state.exerciseArray.length)-1].exercise_id",this.state.exercisesArray[(this.state.exercisesArray.length)-1].exercise_id);
-        console.log("this.props.reduxStore.selectedExercise",this.props.reduxStore.selectedExercise);
-    }
+        //console.log("this.state.exercisesArray[(this.state.exerciseArray.length)-1].exercise_id",this.state.exercisesArray[(this.state.exercisesArray.length)-1].exercise_id);
+        //console.log("this.props.reduxStore.selectedExercise",this.props.reduxStore.selectedExercise);
 
-    renderPreviousSet(){
-        if(this.state.previousSets===true){
-        if(this.state.exercisesArray.length != 0){
-        //if((this.state.exercisesArray[(this.state.exerciseArray.length)-1].exercise_id)===this.props.reduxStore.selectedExercise.id)
-        //{
-            {
-            let taco = this.state.exercisesArray.map((set)=>
-            <tr>
-                <td>{set.weight}</td>
-                <td>{set.reps}</td>
-            </tr>)
-            return taco;
+        let date = Date();
+
+
+
+        const data ={
+            exercise_id: this.props.reduxStore.selectedExercise.id,
+            user_id: this.props.reduxStore.user.id,
+            workout_id: this.props.reduxStore.workout.id,
+            date: date,
+            weight: this.state.weight,
+            reps: this.state.reps,
+        };
+
+        console.log("inside sendSetsToDatabase, data", data);
+        axios.post('/api/exercise_events', data)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    }
+  
+
+    // renderPreviousSet(){
+    //     if(this.state.previousSets===true){
+    //     if(this.state.exercisesArray.length != 0){
+    //     //if((this.state.exercisesArray[(this.state.exerciseArray.length)-1].exercise_id)===this.props.reduxStore.selectedExercise.id)
+    //     //{
+    //         {
+    //         let taco = this.state.exercisesArray.map((set)=>
+    //         <tr>
+    //             <td>{set.weight}</td>
+    //             <td>{set.reps}</td>
+    //         </tr>)
+    //         return taco;
             
             
-        }
+    //     }
    // }
     // else if((this.state.exerciseArray[(this.state.exercisesArray.length)-1].exercise_id)!== this.props.reduxStore.selectedExercise.id){
     //     this.sendSetsToDatabase();
     // }
-    }
-}
-}
+//     }
+// }
+// }
 
     //conditionally render the sets that were input before current set input, do this with
     //a boolean.
@@ -153,7 +187,7 @@ constructor(props){
                             <td>{set.weight}</td>
                             <td>{set.reps}</td>
                         </tr>)} */}
-                        {this.renderPreviousSet()}
+                        {/* {this.renderPreviousSet()} */}
                         {/* <tr>
                             <td>Previous</td>
                             <td>Sets</td>

@@ -4,7 +4,7 @@
 //this reducer will return false if no exercise is selected else it will return truthy
 //with the selected exercise payload.
 
-const selectedExerciseReducer = (state = {exerciseSelected: false}, action) => {
+const selectedExerciseReducer = (state = {exerciseSelected: false, id: 0}, action) => {
     
     if (action.type === 'NEW_EXERCISE_SET'){
         return state = {exerciseSelected: true}, action.payload;
