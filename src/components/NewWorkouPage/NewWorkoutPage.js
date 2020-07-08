@@ -3,6 +3,7 @@ import {Component} from 'react';
 import {connect} from 'react-redux';
 import ExercisesDropDownMenu from '../ExercisesDropDownMenu/ExercisesDropDownMenu';
 import NewExerciseSetTable from '../newExerciseSetTable/newExerciseSetTable';
+import DisplayExercise_EventsToDom from '../DisplayExercise_EventsToDom/DisplayExercise_EventsToDom';
 
 
 class NewWorkoutPage extends Component {
@@ -86,6 +87,7 @@ class NewWorkoutPage extends Component {
        return(
            <div>
            <h1>New Workout Goes Here</h1>
+           <DisplayExercise_EventsToDom/>
            <button onClick={this.recordExerciseSet}>New Exercise Set</button>
            <ExercisesDropDownMenu/>
 

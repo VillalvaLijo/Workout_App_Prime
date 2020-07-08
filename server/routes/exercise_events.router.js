@@ -6,13 +6,14 @@ const router = express.Router();
 
 router.post('/', (req, res) => {
     const exercise_id = req.body.exercise_id;
+    const exercise_name = req.body.exercise_name;
     const user_id = req.body.user_id;
     const workout_id = req.body.workout_id;
     const date= req.body.date;
     const weight = req.body.weight;
     const reps = req.body.reps;
 
-    const sqlText = `INSERT INTO exercise_events (exercise_id, user_id, workout_id, date, weight, reps) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`;
+    const sqlText = `INSERT INTO exercise_events (exercise_id, exercise_name, user_id, workout_id, date, weight, reps) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`;
 
 
     //console.log(req);
@@ -23,7 +24,7 @@ router.post('/', (req, res) => {
     // console.log("req.weight", req.body.weight);
     // console.log("req.reps",req.body.reps);
 
-    pool.query(sqlText, [exercise_id, user_id, workout_id, date, weight, reps])
+    pool.query(sqlText, [exercise_id, exercise_name, user_id, workout_id, date, weight, reps])
         .then((results) => {
             res.sendStatus(201)
         })
@@ -51,6 +52,23 @@ router.get('/', (req,res) =>{
         console.log("error in exercise_events get", error)
         res.sendStatus(500)
     });
+})
+
+//write a delete request to delete sets from the database
+router.delete('/:id', (req, res) =>{
+    let sqlText = `DELETE FROM "exercise_events" WHERE id = $1`;
+
+    let id = req.params.id
+
+    pool.query(sqlText, [id])
+        .then((result) => {
+            console.log("Set Delte function worked");
+            res.sendStatus(200);
+        })
+        .catch((error) =>{
+            console.log("error in delete function", error);
+            res.sendStatus(500);
+        })
 })
 
 module.exports = router;

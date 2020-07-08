@@ -24,7 +24,7 @@ constructor(props){
 
     componentDidMount(){
         //get data from this.props.reduxStore.selectedExerciseReducer
-        console.log("Inside component did mount newExerciseSetTable, this...selectedExerciseReducer", this.props.reduxStore.selectedExercise);
+        //console.log("Inside component did mount newExerciseSetTable, this...selectedExerciseReducer", this.props.reduxStore.selectedExercise);
         this.setState({
             selectedExerciseId: this.props.reduxStore.selectedExercise.id,
         })
@@ -41,6 +41,12 @@ constructor(props){
     //     }
 
     // }
+
+    componentDidUpdate(prevProps,prevState){
+        // if(prevProps.reduxStore.exercise_events.length<this.props.reduxStore.exercise_events.length){
+        //     console.log("inside componentDidUpdate for newSetTable, exercise_events", this.props.reduxStore.exercise_events);
+        // }
+    }
 
     // refreshPage() {              //can brute force use this if you update the database// but it is going to refresh the workout ID.
     //     window.location.reload(false);
@@ -76,11 +82,11 @@ constructor(props){
         //add workout_id to exercise event.
 
         
-        console.log("inside add set");
-        let date = Date()
-        console.log("date", date);
-        console.log("workout id reduxStore", this.props.reduxStore.workout);
-        console.log("workout_id", this.props.reduxStore.workout.id);
+        //console.log("inside add set");
+        //let date = Date()
+        //console.log("date", date);
+        //console.log("workout id reduxStore", this.props.reduxStore.workout);
+        //console.log("workout_id", this.props.reduxStore.workout.id);
 
         //object properties for exercise event
         //exercise_id, user_id, workout_id, date, weight, reps
@@ -111,9 +117,9 @@ constructor(props){
     setInput(){
         //conditionally have a user input set.
         //dispatch exercise event to database
-        console.log("inside Set Input in newExerciseSetTable, exercisesArray", this.state.exercisesArray);
-        console.log("typeof exercisesArray", typeof(this.state.exercisesArray));
-        console.log("this.props.reduxStore.selectedExercise",this.props.reduxStore.selectedExercise);
+        //console.log("inside Set Input in newExerciseSetTable, exercisesArray", this.state.exercisesArray);
+        //console.log("typeof exercisesArray", typeof(this.state.exercisesArray));
+        //console.log("this.props.reduxStore.selectedExercise",this.props.reduxStore.selectedExercise);
 
 
     }
@@ -144,6 +150,7 @@ constructor(props){
             type: 'POST_EXERCISE_EVENTS',
             payload: {
             exercise_id: this.props.reduxStore.selectedExercise.id,
+            exercise_name: this.props.reduxStore.selectedExercise.name,
             user_id: this.props.reduxStore.user.id,
             workout_id: this.props.reduxStore.workout.id,
             date: date,
@@ -151,22 +158,25 @@ constructor(props){
             reps: this.state.reps,
             }
         })
-        this.getExerciseEventsFromServer();
+        //this.getExerciseEventsFromServer();
+        //this.exercise_eventsChecker();
     }
 
-    getExerciseEventsFromServer(){
-        this.props.dispatch({
-            type: 'GET_EXERCISE_EVENTS',
-            payload: {
-                workout_id: this.props.reduxStore.workout.id,
-            }
-        })
-        this.exercise_eventsChecker()
-    }
+    // getExerciseEventsFromServer(){
+    //     this.props.dispatch({
+    //         type: 'GET_EXERCISE_EVENTS',
+    //         payload: {
+    //             workout_id: this.props.reduxStore.workout.id,
+    //         }
+    //     })
+    //     this.exercise_eventsChecker()
+    // }
 
-    exercise_eventsChecker(){
-        console.log("Inside Exercise_events Checker, this.props.reduxStore.exercise_events", this.props.reduxStore.exercise_events);
-    }
+    // exercise_eventsChecker(){
+    //     console.log("Inside Exercise_events Checker, this.props.reduxStore.exercise_events", this.props.reduxStore.exercise_events);
+
+    //     //this checks before the exercise_eventsReducer is called by dispatch
+    // }
 
     
   
