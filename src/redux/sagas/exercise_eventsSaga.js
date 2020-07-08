@@ -55,9 +55,32 @@ function* getExercise_EventsFromDatabase(action){
 
 }
 
+function* deleteExercise_Event(action){
+    console.log("inside deleteExercise_Event Saga, action.payload", action.payload);
+    const exercise_event_id = action.payload.id;
+    const workout_id = action.payload.workout_id;
+    console.log("Inside deleteExercise_Event Saga, exercise_event_id", exercise_event_id);
+
+    try{
+        axios.delete(`/api/exercise_events?id=${exercise_event_id}`);
+    }catch(error){
+        console.log("error with exercise_events DELETE request", error);
+    }
+    //rerun a get request after running a delete request that way the exercise_events Reducer is updated
+    try {
+        const exercise_eventsResponse = yield axios.get(`/api/exercise_events?workout_id=${workout_id}`);
+
+        yield put({type: 'MAKE_EXERCISE_EVENTS_AVAILIBLE', payload: exercise_eventsResponse.data})
+    }catch(error){
+        console.log('Error with exercise_events get request', error);
+    }
+
+}
+
 function* exercise_eventsSaga() {
     yield takeLatest('GET_EXERCISE_EVENTS', getExercise_EventsFromDatabase);  //action.payload should pass the user_id as passed from NewWorkoutPage component
     yield takeLatest('POST_EXERCISE_EVENTS', postExercise_EventsToDatabase);
+    yield takeLatest('DELETE_SET', deleteExercise_Event);
 }
 
 

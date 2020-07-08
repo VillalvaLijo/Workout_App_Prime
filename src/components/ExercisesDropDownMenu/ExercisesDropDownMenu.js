@@ -26,9 +26,13 @@ class ExercisesDropDownMenu extends Component{
     //     return { headerTitle: title};
     // }
 
+    
+
     componentDidUpdate(){
         // const { listOpen } = this.state;
         const listOpen = this.state.listOpen;
+
+        console.log("Inside componentDidUpdate, this.props.reduxStore.exercises",this.props.reduxStore.exercises);
 
         console.log("Inside componentDidUpdate on drop down menu compoent, listOpen:", listOpen);
 

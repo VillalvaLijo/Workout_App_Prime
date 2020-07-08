@@ -55,14 +55,20 @@ router.get('/', (req,res) =>{
 })
 
 //write a delete request to delete sets from the database
-router.delete('/:id', (req, res) =>{
-    let sqlText = `DELETE FROM "exercise_events" WHERE id = $1`;
+router.delete('/', (req, res) =>{
+    
 
-    let id = req.params.id
+    const id = url.parse(req.url, true).query.id;
 
-    pool.query(sqlText, [id])
+    console.log("inside Exercise_events Delete Request, id", id);
+    //let id = req.params.id
+    //console.log("Inside Exercise_events Delete request, id", req.params.id);
+
+    let sqlText = `DELETE FROM "exercise_events" WHERE id = ${id}`;
+
+    pool.query(sqlText)
         .then((result) => {
-            console.log("Set Delte function worked");
+            console.log("Set Delete function worked");
             res.sendStatus(200);
         })
         .catch((error) =>{

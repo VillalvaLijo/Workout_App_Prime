@@ -1,5 +1,6 @@
 const express = require('express');
 const pool = require('../modules/pool');
+const url = require('url');
 
 const router = express.Router();
 
@@ -27,10 +28,15 @@ router.post('/', (req,res) => {
 //going to have to pass the get request user id.
 
 router.get('/', (req,res) => {
-    console.log("inside GET request on exercises.router, req.body:", req.body);
-    queryText = `SELECT * FROM "exercises";`
+   // console.log("inside GET request on exercises.router, req.body:", req.body);
+    const id = url.parse(req.url, true).query
+    const user_id = parseInt(id.user_id)
+    console.log("Inside exercises GET request, user_id", user_id);
+
+    queryText = `SELECT * FROM "exercises" WHERE user_id = ${user_id}`;
 
     pool.query(queryText).then((result) => {
+        console.log("results.rows", result.rows);
         res.send(result.rows);
     }).catch((error) => {
         console.log("error in exercises GET", error)
