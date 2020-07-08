@@ -39,19 +39,20 @@ class NewWorkoutPage extends Component {
         });
         }
 
-    componentDidUpdate(prevProps, prevState){
-        console.log("inside compoenDidUpdate NewWorkoutPage, prevProps", prevProps);
-        console.log("inside componentDidUpdate in NewWorkoutPage", this.props.reduxStore.selectedExercise);
-        // if( prevProps.reduxStore.selectedExercise.id !== this.props.reduxStore.selectedExecise.id){
-        //     this.renderSetTable();
-        // }
-        this.props.dispatch({
-            type: 'GET_EXERCISE_EVENTS',
-            payload: {
-                date: this.props.reduxStore.workout.id,
-            }
-        })
-    }
+    // componentDidUpdate(prevProps, prevState){
+    //     console.log("inside compoenDidUpdate NewWorkoutPage, prevProps", prevProps);
+    //     console.log("inside componentDidUpdate in NewWorkoutPage", this.props.reduxStore.selectedExercise);
+    //     // if( prevProps.reduxStore.selectedExercise.id !== this.props.reduxStore.selectedExecise.id){
+    //     //     this.renderSetTable();
+    //     // }
+    //     this.props.dispatch({
+    //         type: 'GET_EXERCISE_EVENTS',
+    //         payload: {
+    //             workout_id: this.props.reduxStore.workout.id,
+    //         }
+    //     })
+    //     console.log("this.props.reduxStore.exercise_events");
+    // }
 
     renderSetTable(){
         console.log("renderSetTable called.")

@@ -30,17 +30,17 @@ constructor(props){
         })
     }
 
-    componentDidUpdate(prevProps, prevState){
-        console.log("Inside ComponentDidUpdate in newExerciseSetTable");
-        console.log("inside componentDidUpdate in newExerciseSetTable, prevState", prevState);
-        console.log("inside componentDidUpdate in newExerciseSetTable, prevProps", prevProps);
-        if(this.state.selectedExerciseId !== prevProps.reduxStore.selectedExercise.id){
-            console.log("The Selected Exercise has changed");
-            this.clearState()
-            //this.refreshPage() //can brute force use this if you update the database
-        }
+    // componentDidUpdate(prevProps, prevState){
+    //     console.log("Inside ComponentDidUpdate in newExerciseSetTable");
+    //     console.log("inside componentDidUpdate in newExerciseSetTable, prevState", prevState);
+    //     console.log("inside componentDidUpdate in newExerciseSetTable, prevProps", prevProps);
+    //     if(this.state.selectedExerciseId !== prevProps.reduxStore.selectedExercise.id){
+    //         console.log("The Selected Exercise has changed");
+    //         this.clearState()
+    //         //this.refreshPage() //can brute force use this if you update the database
+    //     }
 
-    }
+    // }
 
     // refreshPage() {              //can brute force use this if you update the database// but it is going to refresh the workout ID.
     //     window.location.reload(false);
@@ -85,22 +85,22 @@ constructor(props){
         //object properties for exercise event
         //exercise_id, user_id, workout_id, date, weight, reps
         //exercise_id is avaible at this.props.reduxStore.selectedExercise.id
-        const newSet ={
-            exercise_id: this.props.reduxStore.selectedExercise.id,
-            user_id: this.props.reduxStore.user.id,
-            workout_id: this.props.reduxStore.workout.id,
-            date: date,
-            weight: this.state.weight,
-            reps: this.state.reps,
-        }
+        // const newSet ={
+        //     exercise_id: this.props.reduxStore.selectedExercise.id,
+        //     user_id: this.props.reduxStore.user.id,
+        //     workout_id: this.props.reduxStore.workout.id,
+        //     date: date,
+        //     weight: this.state.weight,
+        //     reps: this.state.reps,
+        // }
 
 
 
-        this.setState({
-            previousSets: true,
-            exerciseArray: this.state.exercisesArray.push(newSet),
-            //kitty: this.state.exercisesArray.push(newSet),
-        });
+        // this.setState({
+        //     previousSets: true,
+        //     exerciseArray: this.state.exercisesArray.push(newSet),
+        //     //kitty: this.state.exercisesArray.push(newSet),
+        // });
 
         this.sendSetsToDatabase()
         
@@ -127,20 +127,48 @@ constructor(props){
 
 
 
-        const data ={
+        // const data ={
+        //     exercise_id: this.props.reduxStore.selectedExercise.id,
+        //     user_id: this.props.reduxStore.user.id,
+        //     workout_id: this.props.reduxStore.workout.id,
+        //     date: date,
+        //     weight: this.state.weight,
+        //     reps: this.state.reps,
+        // };
+
+        //console.log("inside sendSetsToDatabase, data", data);
+        // axios.post('/api/exercise_events', data)
+        // .then(res => console.log(res))
+        // .catch(err => console.log(err));
+        this.props.dispatch({
+            type: 'POST_EXERCISE_EVENTS',
+            payload: {
             exercise_id: this.props.reduxStore.selectedExercise.id,
             user_id: this.props.reduxStore.user.id,
             workout_id: this.props.reduxStore.workout.id,
             date: date,
             weight: this.state.weight,
             reps: this.state.reps,
-        };
-
-        console.log("inside sendSetsToDatabase, data", data);
-        axios.post('/api/exercise_events', data)
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+            }
+        })
+        this.getExerciseEventsFromServer();
     }
+
+    getExerciseEventsFromServer(){
+        this.props.dispatch({
+            type: 'GET_EXERCISE_EVENTS',
+            payload: {
+                workout_id: this.props.reduxStore.workout.id,
+            }
+        })
+        this.exercise_eventsChecker()
+    }
+
+    exercise_eventsChecker(){
+        console.log("Inside Exercise_events Checker, this.props.reduxStore.exercise_events", this.props.reduxStore.exercise_events);
+    }
+
+    
   
 
     // renderPreviousSet(){

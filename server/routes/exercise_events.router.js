@@ -1,5 +1,6 @@
 const express = require('express');
 const pool = require('../modules/pool');
+const url = require('url');
 
 const router = express.Router();
 
@@ -31,5 +32,25 @@ router.post('/', (req, res) => {
             res.sendStatus(500);
         });
 });
+
+router.get('/', (req,res) =>{
+    console.log("inside GET request on exercise_events.router")
+
+    const id = url.parse(req.url, true).query;
+    const workout_id = id.workout_id;
+    console.log("workout_id,",workout_id);
+
+    queryText = `SELECT * FROM "exercise_events"
+    WHERE workout_id = ${workout_id};`
+
+    pool.query(queryText)
+    .then((result) =>{
+        console.log("this is exercise_events get request, result.rows", result.rows)
+        res.send(result.rows);
+    }).catch((error) => {
+        console.log("error in exercise_events get", error)
+        res.sendStatus(500)
+    });
+})
 
 module.exports = router;
