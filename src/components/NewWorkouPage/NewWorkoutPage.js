@@ -21,6 +21,7 @@ class NewWorkoutPage extends Component {
         const workoutDate = Date();
         const workoutStartTime = Date();
         console.log("on NewWorkoutPage, componenet did mount: ", workoutDate);
+        console.log("Inside component did mount NeWorkoutPage, this.props.reduxStore.workout.id");
 
         // this.props.dispatch({
         //     type: 'POST_WORKOUT',
@@ -55,6 +56,20 @@ class NewWorkoutPage extends Component {
     //     })
     //     console.log("this.props.reduxStore.exercise_events");
     // }
+    componentDidUpdate(prevProps, prevState){
+        console.log("inside componetDidUpdate in NewWorkoutPage, this.props.reduxStore.workout.id", this.props.reduxStore.workout.id);
+        if(prevProps != this.props){
+            console.log("inside if statement, component did update for NewWorkoutPage");
+       
+            this.props.dispatch({
+                type: 'GET_EXERCISE_EVENTS',
+                payload: {
+                    workout_id: this.props.reduxStore.workout.id, //date, check on this
+                }
+            });
+    }
+    }
+
 
     renderSetTable(){
         console.log("renderSetTable called.")
