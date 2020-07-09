@@ -28,6 +28,13 @@ class EditProfilePage extends Component {
         console.log("add email to database button pressed");
 
         //write dispatch to send email to the saga
+        this.props.dispatch({
+            type: 'PUT_USER_EMAIL_TO_SERVER',
+            payload: {
+                email: this.state.email,
+                id: this.props.reduxStore.user.id,
+            }
+        });
 
         //clear local state and thus input field on DOM
         this.setState({

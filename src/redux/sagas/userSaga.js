@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchUser() {
@@ -24,8 +24,35 @@ function* fetchUser() {
   }
 }
 
+function* putUserEmailToServer(action){
+  //action.payload will contain user email and user id
+  const id = action.payload.id;
+  const config ={
+    email: action.payload.email
+  }
+  try{
+    yield axios.put(`/api/user/email?id=${id}`, config);
+  }catch(error){
+    console.log('Inside UserSaga, error with user email PUT request:', error);
+  }
+
+  //now write get request to update Redux State so it will be displayed to the DOM
+  try{
+    // const emailGetResponse = yield axios.get()
+
+    //try using the GET request in Saga fetchUser by using a yield put with 'FETCH_USER' as the type
+    //use call? call(fetchUser) //going to try it and 
+    yield call(fetchUser);  //says call is not defined, figure out if you need to import anything -> you have to put call in the import from the saga library
+  }catch(error){
+    console.log('Inside putUserEmailToServer, error with fetchUser call:', error);
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  //write 3 new sagas, that will update user email, height and weight, send to reducer aftr
+  //the put request is made. so you will call a put, then a get then a put to the user reducer.
+  yield takeLatest('PUT_USER_EMAIL_TO_SERVER', putUserEmailToServer);
 }
 
 export default userSaga;

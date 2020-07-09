@@ -72,12 +72,12 @@ router.put('/user_email', (req, res) =>{
 
   console.log("Inside Email put request, query param, id:", id);
 
-  const sqlQuery = `UPDATE "user" SET email = '${email}' WHERE id = ${id};`;
+  const sqlQuery = `UPDATE "user" SET email = '${user_email}' WHERE id = ${id};`;
 
   pool.query(sqlQuery).then((results) =>{
     console.log("After user email put request, results:", results);
     res.sendStatus( 201 );
-  }).catch((err) => {
+  }).catch((error) => {
     console.log("error with user email put request:", error);
     res.sendStatus(500);
   })
