@@ -18,7 +18,10 @@ constructor(props){
 
     }
 
-    this.addSet = this.addSet.bind(this);
+    //this.addSet = this.addSet.bind(this);
+
+    //bind this to function sendSetsToDatabase
+    this.sendSetsToDatabase = this.sendSetsToDatabase.bind(this);
 }
     
 
@@ -77,7 +80,7 @@ constructor(props){
 
 
 
-    addSet(){
+    //addSet(){
         //create a render function that adds a set as the add set button is pressed
         //add workout_id to exercise event.
 
@@ -108,13 +111,13 @@ constructor(props){
         //     //kitty: this.state.exercisesArray.push(newSet),
         // });
 
-        this.sendSetsToDatabase()
+        //this.sendSetsToDatabase()
         
-        this.setInput();
+        //this.setInput();
         //change the previousSets boolean to true. 
-    }
+    //}
 
-    setInput(){
+    //setInput(){
         //conditionally have a user input set.
         //dispatch exercise event to database
         //console.log("inside Set Input in newExerciseSetTable, exercisesArray", this.state.exercisesArray);
@@ -122,7 +125,7 @@ constructor(props){
         //console.log("this.props.reduxStore.selectedExercise",this.props.reduxStore.selectedExercise);
 
 
-    }
+    //}
 
     sendSetsToDatabase(){
         console.log("Sending Sets to data base");
@@ -160,6 +163,12 @@ constructor(props){
         })
         //this.getExerciseEventsFromServer();
         //this.exercise_eventsChecker();
+
+        //clear input fields with setState
+        this.setState({
+            weight: '',
+            reps: '',
+        })
     }
 
     // getExerciseEventsFromServer(){
@@ -237,12 +246,14 @@ constructor(props){
                         <td><input
                                 type= "text"
                                 name="weight"
+                                value = {this.state.weight}
                                 onChange={this.handleWeightInput}
                             />
                         </td>
                         <td><input
                                 type="number"
                                 name="reps"
+                                value={this.state.reps}
                                 onChange={this.handleRepInput}
                             />
                         </td>
@@ -251,7 +262,7 @@ constructor(props){
                 </table>
                 <button 
                     className="addSet"
-                    onClick= {this.addSet}
+                    onClick= {this.sendSetsToDatabase}
                 >
                     Add Set
                 </button>

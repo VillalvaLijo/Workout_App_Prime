@@ -3,7 +3,8 @@ import {Component} from 'react';
 import {connect} from 'react-redux';
 import ExercisesDropDownMenu from '../ExercisesDropDownMenu/ExercisesDropDownMenu';
 import NewExerciseSetTable from '../newExerciseSetTable/newExerciseSetTable';
-import DisplayExercise_EventsToDom from '../DisplayExercise_EventsToDom/DisplayExercise_EventsToDom';
+import DisplayExercise_EventsToDom from '../displayExercise_EventsToDom/DisplayExercise_EventsToDom';
+import AddExerciseButton from '../AddExerciseButton/AddExerciseButton';
 
 
 class NewWorkoutPage extends Component {
@@ -88,8 +89,9 @@ class NewWorkoutPage extends Component {
            <div>
            <h1>New Workout Goes Here</h1>
            <DisplayExercise_EventsToDom/>
-           <button onClick={this.recordExerciseSet}>New Exercise Set</button>
+           {/* <button onClick={this.recordExerciseSet}>New Exercise Set</button> */}
            <ExercisesDropDownMenu/>
+           <AddExerciseButton/>
 
            {this.props.reduxStore.selectedExercise.exerciseSelected //select for exercises selected in the reducer, have exercises selected be a boolean.
                         ? <NewExerciseSetTable/>

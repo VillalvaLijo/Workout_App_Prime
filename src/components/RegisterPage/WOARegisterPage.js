@@ -14,8 +14,8 @@ class WOARegisterPage extends Component {
       registerUser = (event) => {  // use this function to dispatch the input 
                                     //from the registration form to register user saga in registrationSaga
         event.preventDefault();
-    
-        if (this.state.username && this.state.password) {
+        console.log("Inside register user, this.state", this.state);
+        // if (this.state.username && this.state.password) {
           this.props.dispatch({
             type: 'REGISTER',
             payload: {
@@ -26,9 +26,9 @@ class WOARegisterPage extends Component {
               weight: this.state.weight,
             },
           });
-        } else {
-          this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
-        }
+        // } else {
+        //   this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
+        // }
       } // end registerUser
 
       handleInputChangeFor = propertyName => (event) => { //function to update local state 
@@ -98,6 +98,14 @@ render(){
                             />
                     </label>
                 </div>
+                {/* <div className="registerButtonDiv">
+                    <button
+                    onClick= {()=>this.registerUser()}
+                    >
+                        Register
+                    </button>
+
+                </div> */}
                 <div>
                     <input
                         className="register"

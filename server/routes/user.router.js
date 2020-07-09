@@ -22,17 +22,21 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.post('/register', (req, res, next) => {  
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
-  const email = req.body.email;
-  const height = req.body.height;
-  const weight = req.body.weight;
+  // const email = req.body.email;
+  // const height = req.body.height;
+  // const weight = req.body.weight;
 
   //console.log req.boy to get an understanding of what is being passed and why it
   //isn't being sent to the database
 
   console.log("inside post, /register, req.body:",req.body);
 
-  const queryText = 'INSERT INTO "user" (username, password, email, height, weight) VALUES ($1, $2, $3, $4, $5) RETURNING id';  //?RID
-  pool.query(queryText, [username, password, email, height, weight])
+  //sqlQuery just for username and password for provided registerpage
+  sqlQuery= 'INSERT INTO "user" (username, password) VALUES($1, $2) RETURNING id';
+
+  //const queryText = 'INSERT INTO "user" (username, password, email, height, weight) VALUES ($1, $2, $3, $4, $5) RETURNING id';  //?RID
+  //pool.query(queryText, [username, password, email, height, weight])
+  pool.query(queryText, [username, password])
     .then(() => res.sendStatus(201))
     .catch(() => res.sendStatus(500));
 });
