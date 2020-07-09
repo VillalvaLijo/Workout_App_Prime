@@ -4,6 +4,11 @@ const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
 const userStrategy = require('../strategies/user.strategy');
 
+//import 'url' from express in order to be able to acceses
+//query params in put request
+const url = require('url');
+
+
 const router = express.Router();
 
 // Handles Ajax request for user information if user is authenticated
@@ -32,11 +37,11 @@ router.post('/register', (req, res, next) => {
   console.log("inside post, /register, req.body:",req.body);
 
   //sqlQuery just for username and password for provided registerpage
-  sqlQuery= 'INSERT INTO "user" (username, password) VALUES($1, $2) RETURNING id';
+  const sqlQuery= 'INSERT INTO "user" (username, password) VALUES($1, $2) RETURNING id';
 
   //const queryText = 'INSERT INTO "user" (username, password, email, height, weight) VALUES ($1, $2, $3, $4, $5) RETURNING id';  //?RID
   //pool.query(queryText, [username, password, email, height, weight])
-  pool.query(queryText, [username, password])
+  pool.query(sqlQuery, [username, password])
     .then(() => res.sendStatus(201))
     .catch(() => res.sendStatus(500));
 });
@@ -55,5 +60,21 @@ router.post('/logout', (req, res) => {
   req.logout();
   res.sendStatus(200);
 });
+
+//write PUT request here to take email from the user input on Eit Profile Page
+router.put('/user_email', (req, res) =>{
+  console.log("Inside user email put request: req.body", req.body);
+  //grab query param of user id for the database entry
+  const id = url.parse(req.url, true).query.id;
+
+  //acceses req.body to extract usable parameters
+  const user_email = req.body.email;
+
+  console.log("Inside Email put request, query param, id:", id);
+
+  const sqlQuery = `UPDATE "user" SET email = '${email}' WHERE id = ${id};`;
+
+
+})
 
 module.exports = router;

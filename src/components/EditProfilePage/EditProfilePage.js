@@ -20,8 +20,19 @@ class EditProfilePage extends Component {
         console.log("inside componentDidMount in Edit Profile Page, this.props.reduxStore.user", this.props.reduxStore.user);
     }
 
-    componentDidUpdate(){
-       console.log("inside component did update, Edit profile page, this.state:",this.state);
+    // componentDidUpdate(){
+    //    console.log("inside component did update, Edit profile page, this.state:",this.state);
+    // }
+
+    addEmailToDatabase(){
+        console.log("add email to database button pressed");
+
+        //write dispatch to send email to the saga
+
+        //clear local state and thus input field on DOM
+        this.setState({
+            email: "",
+        });
     }
 
     handleInputChangeFor = propertyName => (event) =>{
@@ -56,6 +67,12 @@ class EditProfilePage extends Component {
                         value={this.state.email}
                         onChange={this.handleInputChangeFor('email')}
                         />
+                        <button 
+                            type='button'
+                            onClick={()=>this.addEmailToDatabase()}
+                            >
+                                Submit
+                            </button>
                    </label>
                </div>
                <div className="updateHeightDiv">
@@ -71,6 +88,11 @@ class EditProfilePage extends Component {
                     value={this.state.height}
                     onChange={this.handleInputChangeFor('height')}
                     />
+                    <button 
+                            type='button'
+                            >
+                                Submit
+                            </button>
                     </label>
                </div>
                <div className="updateWeightDiv">
@@ -85,6 +107,11 @@ class EditProfilePage extends Component {
                         value={this.state.weight}
                         onChange={this.handleInputChangeFor('weight')}
                         />
+                        <button 
+                            type='button'
+                            >
+                                Submit
+                            </button>
                         </label>
                </div>
 
