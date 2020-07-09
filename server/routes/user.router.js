@@ -74,7 +74,13 @@ router.put('/user_email', (req, res) =>{
 
   const sqlQuery = `UPDATE "user" SET email = '${email}' WHERE id = ${id};`;
 
-
+  pool.query(sqlQuery).then((results) =>{
+    console.log("After user email put request, results:", results);
+    res.sendStatus( 201 );
+  }).catch((err) => {
+    console.log("error with user email put request:", error);
+    res.sendStatus(500);
+  })
 })
 
 module.exports = router;
