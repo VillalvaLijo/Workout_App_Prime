@@ -66,12 +66,31 @@ function* putUserHeightToServer(action){
   }
 }
 
+function* putUserWeightToServer(action){
+  const id = action.payload.id;
+  const config ={
+    weight: action.payload.weight,
+  }
+  try{
+    yield axios.put(`/api/user/user_weight?id=${id}`, config);
+  }catch(error){
+    console.log('Inside UserSaga, error with user weight PUT request:', error);
+  }
+  //call fetchUser to update ReduxStore with user height
+  try{
+    yield call(fetchUser);
+  }catch(error){
+    console.log("Inside putUserWeightToServer, error with fetchUser call", error);
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
   //write 3 new sagas, that will update user email, height and weight, send to reducer aftr
   //the put request is made. so you will call a put, then a get then a put to the user reducer.
   yield takeLatest('PUT_USER_EMAIL_TO_SERVER', putUserEmailToServer);
   yield takeLatest('PUT_USER_HEIGHT_TO_SERVER', putUserHeightToServer);
+  yield takeLatest('PUT_USER_WEIGHT_TO_SERVER', putUserWeightToServer);
 }
 
 export default userSaga;

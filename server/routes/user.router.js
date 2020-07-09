@@ -117,4 +117,26 @@ router.put('/user_height', (req, res) =>{
   })
 })
 
+//write PUT for weight input
+router.put('/user_weight', (req, res) =>{
+  console.log("Inside user weight put request: req.body", req.body);
+  //grab query param of user id for the database entry
+  const id = url.parse(req.url, true).query.id;
+
+  //acceses req.body to extract usable parameters
+  const userWeight = req.body.weight;
+
+  console.log("Inside user weight put request, query param, id:", id);
+
+  const sqlQuery = `UPDATE "user" SET weight = ${userWeight} WHERE id = ${id};`;
+
+  pool.query(sqlQuery).then((results) =>{
+    console.log("After user weight put request, results:", results);
+    res.sendStatus( 201 );
+  }).catch((error) => {
+    console.log("error with user weight put request:", error);
+    res.sendStatus(500);
+  })
+})
+
 module.exports = router;

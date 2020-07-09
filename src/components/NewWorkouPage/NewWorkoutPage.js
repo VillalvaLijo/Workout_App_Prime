@@ -22,22 +22,22 @@ class NewWorkoutPage extends Component {
         const workoutStartTime = Date();
         console.log("on NewWorkoutPage, componenet did mount: ", workoutDate);
 
-        this.props.dispatch({
-            type: 'POST_WORKOUT',
-            payload: {
-                user_id: user_id,
-                date: workoutDate,
-                start_time: workoutStartTime,
-            }
-        })
+        // this.props.dispatch({
+        //     type: 'POST_WORKOUT',
+        //     payload: {
+        //         user_id: user_id,
+        //         date: workoutDate,
+        //         start_time: workoutStartTime,
+        //     }
+        // })
 
+        //this should clear redux state to only exercise_events that
+        //have the current workout_id
         this.props.dispatch({
             type: 'GET_EXERCISE_EVENTS',
             payload: {
-                date: this.props.reduxStore.workout.id,
+                workout_id: this.props.reduxStore.workout.id, //date, check on this
             }
-
-    
         });
         }
 

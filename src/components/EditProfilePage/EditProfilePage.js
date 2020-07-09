@@ -60,6 +60,24 @@ class EditProfilePage extends Component {
         });
     }
 
+    addWeightToDatabase(){
+        console.log("add weight to database button pressed");
+
+        //write dispatch to send user height to the saga
+        this.props.dispatch({
+            type: 'PUT_USER_WEIGHT_TO_SERVER',
+            payload: {
+                weight: this.state.weight,
+                id: this.props.reduxStore.user.id,
+            }
+        });
+
+        //clear local state and thus clear input
+        this.setState({
+            weight: "",
+        });
+    }
+
     handleInputChangeFor = propertyName => (event) =>{
         this.setState({
             [propertyName]: event.target.value,
@@ -123,7 +141,7 @@ class EditProfilePage extends Component {
                </div>
                <div className="updateWeightDiv">
                    <div className="currentWeight">
-                       Current Weight:
+                       Current Weight: {this.props.reduxStore.user.weight}
                    </div>
                    <label htmlFor="text">
                        Enter New Weight:
@@ -135,6 +153,7 @@ class EditProfilePage extends Component {
                         />
                         <button 
                             type='button'
+                            onClick ={()=>this.addWeightToDatabase()}
                             >
                                 Submit
                             </button>

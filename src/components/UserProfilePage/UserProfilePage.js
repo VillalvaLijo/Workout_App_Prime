@@ -18,11 +18,33 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 class UserProfilePage extends Component{
     //establish a new page that the user navigates through the app in 
 
+    //create a state for this page so that you can pass it too the workout dispatch
+    // state = {
+
+    // }
+    //not sure if I need this.
+
     navToWorkoutPage = () =>{
         //navigate to the new workout page so the user can enter in a new workout.
+        //create new workout event here by calling a dispatch to the workout saga
+        this.props.dispatch({
+            type: 'POST_WORKOUT',
+            payload: {
+                user_id: this.props.reduxStore.user.id,
+                date: Date(),
+                start_time: Date(),
+            }
+        })
+
+        this.props.dispatch({
+            type: 'CLEAR_SELECTED_EXERCISE'
+        });
+
 
         console.log("Inside navToWorkoutPage function, New Workout Button Clicked")
         this.props.history.push("/newworkout");
+
+
     }
 
     navToNewExercisePage = () => {
@@ -54,5 +76,9 @@ class UserProfilePage extends Component{
 
 }
 
-export default UserProfilePage;
+
+const mapStateToProps = (reduxStore) => ({ reduxStore })
+
+export default connect(mapStateToProps) (UserProfilePage);
+
 
