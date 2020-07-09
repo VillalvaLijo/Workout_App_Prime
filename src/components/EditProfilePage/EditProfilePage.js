@@ -42,6 +42,24 @@ class EditProfilePage extends Component {
         });
     }
 
+    addHeightToDatabase(){
+        console.log("add height to database button pressed");
+
+        //write dispatch to send user height to the saga
+        this.props.dispatch({
+            type: 'PUT_USER_HEIGHT_TO_SERVER',
+            payload: {
+                height: this.state.height,
+                id: this.props.reduxStore.user.id,
+            }
+        });
+
+        //clear local state and thus clear input
+        this.setState({
+            height: "",
+        });
+    }
+
     handleInputChangeFor = propertyName => (event) =>{
         this.setState({
             [propertyName]: event.target.value,
@@ -97,6 +115,7 @@ class EditProfilePage extends Component {
                     />
                     <button 
                             type='button'
+                            onClick = {()=>this.addHeightToDatabase()}
                             >
                                 Submit
                             </button>

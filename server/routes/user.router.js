@@ -83,4 +83,38 @@ router.put('/user_email', (req, res) =>{
   })
 })
 
+//write put request for user height
+router.put('/user_height', (req, res) =>{
+  console.log("Inside user height put request: req.body", req.body);
+  //grab query param of user id for the database entry
+  const id = url.parse(req.url, true).query.id;
+
+  //acceses req.body to extract usable parameters
+  const user_height = req.body.height;
+
+  console.log("Inside height put request, query param, id:", id);
+  console.log("Inside height PUT, user_height before quote add:", user_height);
+  //your going to have to find the single quote and add another quote to 
+  //be able to add it into the database with SQL, so 5'7, becomes 5''7;
+  if(user_height.includes('')){
+    let heightSplit = user_height.split("'");
+    console.log("inside if user_height.include, heightSplit:", heightSplit);
+    let doubleSingleQuote = "''";
+    var userHeightString=heightSplit[0].concat(doubleSingleQuote, heightSplit[1]);
+    console.log("inside user_height.includes if statement, userHeightString after concat:", userHeightString);
+  }
+
+  console.log("inside height Put request, userHeightString right outside if statement:", userHeightString);
+
+  const sqlQuery = `UPDATE "user" SET height = '${userHeightString}' WHERE id = ${id};`;
+
+  pool.query(sqlQuery).then((results) =>{
+    console.log("After user height put request, results:", results);
+    res.sendStatus( 201 );
+  }).catch((error) => {
+    console.log("error with user height put request:", error);
+    res.sendStatus(500);
+  })
+})
+
 module.exports = router;
