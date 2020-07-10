@@ -5,6 +5,10 @@ import DisplayOldWorkoutsToDom from '../DisplayOldWorkoutsToDom/DisplayOldWorkou
 
 class WorkoutHistoryPage extends Component {
 
+    state = {
+        selectedWorkout_id: '',
+    }
+
     //write a get request to get all previous workouts for the logged in user_id
     //then display all these workouts as buttons displaying date on the button
     //no, display workout and date as label for each button and allow the user to click 
@@ -30,15 +34,46 @@ class WorkoutHistoryPage extends Component {
     }
 
     displayAllPreviousWorkoutsToDom(){
+        //figure out how you are going to select the workout id with button, 
+        // select key on button click, then pass it to display old workouts to dom.
+        
         //console.log("Inside displayeAllPreviousWorkoutsToDom, this.props...previousWorkouts", this.props.reduxStore.previous_workouts);
         if(this.props.reduxStore.previous_workouts.length>=1){
+            let workoutsArray = this.props.reduxStore.previous_workouts.map((workout) => 
+            <div className = "previousWorkoutButtonDiv" key = {workout.id}> 
+            <label htmlFor ="previousWorkoutButton">
+                {workout.date}
+                <button
+                type='button'
+                onClick={()=>this.selectPreviousWorkoutToDisplay(workout.id)}
+                >
+                View Workout
+                </button>
+            </label>
+            </div>)
 
+
+            return(
+                <div className = "workoutHistoryForm">
+                    <h3>Your Workouts</h3>
+                    {workoutsArray}
+                </div>
+            )
         }
         else{
             return(<div className="noWorkoutHistoryConditionalRender">
                 You don't have any saved Workouts, Go Workout!
             </div>)
         }
+    }
+
+    selectPreviousWorkoutToDisplay(workout_id){
+        console.log("inside select previous workout to display, workout_id");
+
+        this.setState({
+            selectedWorkout_id: workout_id,
+        })
+
     }
 
     //going to nee to write a component did update becuase DOM is 
@@ -55,13 +90,13 @@ class WorkoutHistoryPage extends Component {
     render(){
         return(
             <div className="workoutHistoryPage">
-                <h1>Display all Previous Workouts</h1>
+                <h1>Workout History</h1>
                 <div className = "listOfPreviousWorkouts">
                     List Workouts by date here
                     {this.displayAllPreviousWorkoutsToDom()}
                 </div>
                 <div className = "displaySlectedWorkout">
-                    <DisplayOldWorkoutsToDom/>
+                    <DisplayOldWorkoutsToDom selectedWorkout_id = {this.state.selectedWorkout_id}/>
                 </div>
 
             </div>

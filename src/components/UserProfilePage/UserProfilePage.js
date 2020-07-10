@@ -59,6 +59,13 @@ class UserProfilePage extends Component{
         this.props.history.push("/editprofile");
     }
 
+    navToDisplayPreviousWorkout = () =>{
+        this.props.history.push("/displaypreviousworkouts");
+    }
+
+    navToStatistics = () => {
+        this.props.history.push("/statistics");
+    }
 
 
     render(){
@@ -68,6 +75,8 @@ class UserProfilePage extends Component{
                 <div><button onClick={this.navToWorkoutPage}>New Workout</button></div>
                 <div><button onClick = {this.navToNewExercisePage}>Add New Exercises</button></div>
                 <div><button onClick = {this.navToEditProfilePage}>Edit Profile</button></div>
+                <div><button onClick = {this.navToDisplayPreviousWorkout}>View Workout History</button></div>
+                <div><button onClick = {this.navToStatistics}>View Your Data</button></div>
                 <LogOutButton className="log-in" />
             </div>
         )

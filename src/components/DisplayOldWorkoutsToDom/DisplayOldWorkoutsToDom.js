@@ -8,7 +8,8 @@ class DisplayOldWorkoutsToDom extends Component {
     render(){
         return(
 <div>
-    Display Selected Workout Here:
+    Display Selected Workout Here DISPLAY DATE:
+    Workout_ID: {this.props.selectedWorkout_id}
 </div>
 
         )
