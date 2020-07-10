@@ -21,6 +21,8 @@ class LoginPage extends Component {
     } else {
       this.props.dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
+    //navigate to home on login
+    this.props.history.push("/home");
   } // end login
 
   handleInputChangeFor = propertyName => (event) => {

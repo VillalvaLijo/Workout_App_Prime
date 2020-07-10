@@ -3,10 +3,13 @@ import axios from 'axios';
 
 function* getPrevious_WorkoutsFromDatabase(action){
     //action.payload will contain user_id
+    console.log("inside getPrevious_WorkoutsFromDatabase, action.payload", action.payload);
     const user_id = action.payload.user_id;
+    //not running this console.log for some reason.
+    //console.log("inside getPrevious_WorkoutsFromDatabase, user_id", user_id);
 
     try{
-        const previous_workoutsResponse = yield axios.get(`/api/previous_workouts?user_id=${user_id}`);
+        const previous_workoutsResponse = yield axios.get(`api/previous_workouts?user_id=${user_id}`);
 
         yield put({type: 'MAKE_USER_WORKOUT_HISTORY_AVAILIBLE', payload: previous_workoutsResponse.data})
     }catch(error){
@@ -17,3 +20,5 @@ function* getPrevious_WorkoutsFromDatabase(action){
 function* previous_workoutsSaga(){
     yield takeLatest('GET_PREVIOUS_WORKOUTS', getPrevious_WorkoutsFromDatabase);
 }
+
+export default previous_workoutsSaga;

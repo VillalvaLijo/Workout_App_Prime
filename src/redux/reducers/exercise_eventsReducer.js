@@ -3,7 +3,7 @@
 
 const exercise_eventsReducer = (state= {exercise_events: [] }, action)=>{
 
-    console.log("inside exercise_events reducer, action.payload", action.payload);
+    //console.log("inside exercise_events reducer, action.payload", action.payload);
 
     if (action.type === 'MAKE_EXERCISE_EVENTS_AVAILIBLE'){
         return action.payload

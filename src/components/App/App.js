@@ -67,31 +67,31 @@ class App extends Component {
             />
             {/* Add routes for the workout App, they will navigate to your pages,
             Add a route for New Workout Page, Add New Exercises Page, and Edit Profile Page */}
-            <Route
+            <ProtectedRoute
               exact
               path ="/newworkout"
               component={NewWorkoutPage}
               />
             {/* Add Route for new exercise page */}
-            <Route
+            <ProtectedRoute
               exact
               path="/addnewexercise"
               component={NewExercisePage}
               />
               {/* Route for Display old workouts page */}
-              <Route
+              <ProtectedRoute
                 exact
                 path="/displaypreviousworkouts"
                 component={WorkoutHistoryPage}
                 />
                 {/* Add route for statistics page */}
-                <Route
+                <ProtectedRoute
                   exact
                   path="/statistics"
                   component={StatisticsPage}
                 />
             {/* add new route for edit profile page here */}
-              <Route
+              <ProtectedRoute
                 exact
                 path="/editprofile"
                 component={EditProfilePage}

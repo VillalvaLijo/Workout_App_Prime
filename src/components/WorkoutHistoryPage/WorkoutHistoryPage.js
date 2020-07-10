@@ -22,7 +22,7 @@ class WorkoutHistoryPage extends Component {
 
         this.props.dispatch({
             type: 'GET_PREVIOUS_WORKOUTS',
-            action: {
+            payload: {
                 user_id: this.props.reduxStore.user.id,
             }
         });
@@ -30,8 +30,27 @@ class WorkoutHistoryPage extends Component {
     }
 
     displayAllPreviousWorkoutsToDom(){
-        console.log("Inside displayeAllPreviousWorkoutsToDom, this.props...previousWorkouts", this.props.reduxStore.previous_workouts);
+        //console.log("Inside displayeAllPreviousWorkoutsToDom, this.props...previousWorkouts", this.props.reduxStore.previous_workouts);
+        if(this.props.reduxStore.previous_workouts.length>=1){
+
+        }
+        else{
+            return(<div className="noWorkoutHistoryConditionalRender">
+                You don't have any saved Workouts, Go Workout!
+            </div>)
+        }
     }
+
+    //going to nee to write a component did update becuase DOM is 
+    //rendering before dispatch GET request hits server.
+    //call render again inside componentDidUpdate
+    componentDidUpdate(prevProps, prevState){
+        if(prevProps.previous_workouts !== this.props.reduxStore.previous_workouts){
+            console.log("inside component did update, if state ment is true, recall render");
+            this.render();
+        }
+    }
+
 
     render(){
         return(
