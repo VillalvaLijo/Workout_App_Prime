@@ -23,8 +23,11 @@ import UserProfilePage from '../UserProfilePage/UserProfilePage';
 import NewWorkoutPage from '../NewWorkouPage/NewWorkoutPage';
 import NewExercisePage from '../NewExercisePage/NewExercisePage';
 import EditProfilePage from '../EditProfilePage/EditProfilePage';
+import WorkoutHistoryPage from '../WorkoutHistoryPage/WorkoutHistoryPage';
+import StatisticsPage from '../StatisticsPage/StatisticsPage';
 
 import './App.css';
+
 
 class App extends Component {
   componentDidMount () {
@@ -75,12 +78,24 @@ class App extends Component {
               path="/addnewexercise"
               component={NewExercisePage}
               />
+              {/* Route for Display old workouts page */}
+              <Route
+                exact
+                path="/displaypreviousworkouts"
+                component={WorkoutHistoryPage}
+                />
+                {/* Add route for statistics page */}
+                <Route
+                  exact
+                  path="/statistics"
+                  component={StatisticsPage}
+                />
             {/* add new route for edit profile page here */}
-            <Route
-              exact
-              path="/editprofile"
-              component={EditProfilePage}
-            />
+              <Route
+                exact
+                path="/editprofile"
+                component={EditProfilePage}
+              />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
