@@ -1,6 +1,7 @@
 import React from 'react';
 import {Component} from 'react';
 import {connect} from 'react-redux';
+import './EditProfilePage.css';
 
 
 class EditProfilePage extends Component {

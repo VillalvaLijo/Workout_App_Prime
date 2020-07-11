@@ -2,6 +2,7 @@ import React from 'react';
 import {Component} from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import './NewExercisePage.css';
 
 //this component should allow a new user to enter in a new exercise anf then 
 //this compoent will send a post request to the server so that the new exercise is
@@ -41,7 +42,7 @@ class NewExercisePage extends Component {
 
    render(){
        return(
-           <div>
+           <div className="NewExercisePage">
                <h1>Enter a New Exercise</h1>
                <p>Exercises will be stored so you can record them in workouts
                    and you will be able to track your progress by workout name.
