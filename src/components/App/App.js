@@ -8,7 +8,7 @@ import {
 
 import {connect} from 'react-redux';
 
-import Nav from '../Nav/Nav';
+import Nav from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'

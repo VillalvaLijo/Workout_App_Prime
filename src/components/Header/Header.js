@@ -7,7 +7,7 @@ import './Header.css';
 const Nav = (props) => (
   <div className="nav">
     <Link to="/home">
-      <h2 className="nav-title">Levels Fitness</h2>
+      <h2 className="nav-title">Human Athletics</h2>
     </Link>
     <div className="nav-right">
       <Link className="nav-link" to="/home">

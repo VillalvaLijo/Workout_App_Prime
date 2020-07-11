@@ -7,7 +7,8 @@ import './Nav.css';
 const Nav = (props) => (
   <div className="nav">
     <Link to="/home">
-      <h2 className="nav-title">Prime Solo Project</h2>
+      {/* <h2 className="nav-title">Levels Fitness</h2> */}
+      <h1 className="nav-title">Human Athletics</h1>
     </Link>
     <div className="nav-right">
       <Link className="nav-link" to="/home">
@@ -16,6 +17,7 @@ const Nav = (props) => (
         and call this link 'Login / Register' if they are not */}
         {props.user.id ? 'Home' : 'Login / Register'}
       </Link>
+      {/* conditonally render the current workout nav button, better yet, get rid of this shit and use flex box and buttons */}
       <Link className="nav-link" to ="/newworkout">
         Current Workout
       </Link>

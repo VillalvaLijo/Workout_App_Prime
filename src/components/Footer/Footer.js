@@ -8,7 +8,12 @@ import './Footer.css'
 
 const Footer = () => (
   <footer>
-    &copy; Victory Athletics
+    {/* &copy; Apex Athletics */}
+    {/* &copy; Victory Athletics */}
+    {/* &copy; Triumph Fitness */}
+    {/* &copy; Victory Fitness */}
+    &copy; Apex Fitness
+
   </footer>
 );
 

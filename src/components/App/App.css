@@ -1,7 +1,20 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
-    background-color: #404040;
+    /* background-color: #404040; */
+    /* background-image: url("./3.jpg"); */
+    background-image: url("./Sunrise-over-Globe-sparse-city-lights.jpg");
+    /* background-image: url("./Higher-Up-Sun.jpg"); */
+    /* background-image: url("./Sunrise-Globe-Blue-Theme.jpg"); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    /* background-color: #4d0000; */
+    /* background-color: #1a1a1a; */
+    /* background-color: #333333; */
+    background-color: #0d0d0d;
+    /* background-color: #660000; */
+    /* background-color: #800000; */
 }
 
 .alert {
