@@ -5,6 +5,7 @@ import ExercisesDropDownMenu from '../ExercisesDropDownMenu/ExercisesDropDownMen
 import NewExerciseSetTable from '../newExerciseSetTable/newExerciseSetTable';
 import DisplayExercise_EventsToDom from '../displayExercise_EventsToDom/DisplayExercise_EventsToDom';
 import AddExerciseButton from '../AddExerciseButton/AddExerciseButton';
+import "./NewWorkoutPage.css";
 
 
 class NewWorkoutPage extends Component {
@@ -102,7 +103,8 @@ class NewWorkoutPage extends Component {
    render(){
        return(
            <div>
-           <h1>New Workout Goes Here</h1>
+           <h1>Workout: {this.props.reduxStore.workout.date}</h1>
+           <div className="currentWorkoutDisplay">
            <DisplayExercise_EventsToDom/>
            {/* <button onClick={this.recordExerciseSet}>New Exercise Set</button> */}
            <ExercisesDropDownMenu/>
@@ -112,6 +114,8 @@ class NewWorkoutPage extends Component {
                         ? <NewExerciseSetTable/>
                         : <div>No Exercise Selected</div>
                         }
+
+            </div>
 
            {/* <newExerciseSetTable/> */}
 

@@ -2,6 +2,7 @@ import React from 'react';
 import {Component} from 'react';
 import {connect} from 'react-redux';
 import DisplayOldWorkoutsToDom from '../DisplayOldWorkoutsToDom/DisplayOldWorkoutsToDom';
+import './WorkoutHistoryPage.css';
 
 class WorkoutHistoryPage extends Component {
 

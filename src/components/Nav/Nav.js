@@ -18,10 +18,13 @@ const Nav = (props) => (
         {props.user.id ? 'Home' : 'Login / Register'}
       </Link>
       {/* conditonally render the current workout nav button, better yet, get rid of this shit and use flex box and buttons */}
+      {props.user.id && (
+      <>
       <Link className="nav-link" to ="/newworkout">
         Current Workout
       </Link>
-
+      </>
+      )}
       {/* Show the link to the info page and the logout button if the user is logged in */}
       {props.user.id && (
         <>

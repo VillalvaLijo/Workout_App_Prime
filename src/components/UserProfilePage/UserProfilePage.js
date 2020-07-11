@@ -41,7 +41,7 @@ class UserProfilePage extends Component{
         });
 
 
-        console.log("Inside navToWorkoutPage function, this.state.date.toLocaleString()", this.state.date.toLocaleString());
+        //console.log("Inside navToWorkoutPage function, this.state.date.toLocaleString()", this.state.date.toLocaleString());
         this.props.history.push("/newworkout");
 
 
@@ -71,8 +71,7 @@ class UserProfilePage extends Component{
     render(){
         return(
             <div>
-                <h1>Welcome Back To Levels,</h1>
-                <h1>{this.props.reduxStore.user.username}</h1> 
+                <h1>Welcome Back {this.props.reduxStore.user.username}</h1>
                 <div><button onClick={this.navToWorkoutPage}>New Workout</button></div>
                 <div><button onClick = {this.navToNewExercisePage}>Add New Exercises</button></div>
                 <div><button onClick = {this.navToEditProfilePage}>Edit Profile</button></div>
