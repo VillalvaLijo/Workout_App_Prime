@@ -42,7 +42,7 @@ class AddExerciseButton extends Component{
         return(
             <div className= "addExerciseButtonDiv">
                 <label htmlFor= "addNewExercise">
-                    Add New Exercise:
+                    {/* Add New Exercise: */}
                     <input
                     type = "text"
                     name="addNewExercise"

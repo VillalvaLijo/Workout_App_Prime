@@ -6,7 +6,7 @@ import exercisesSaga from './exercisesSaga';
 import workoutsSaga from './workoutsSaga';
 import exercise_eventsSaga from './exercise_eventsSaga';
 import previous_workoutsSaga from './previous_workoutsSaga';
-
+import oldWorkoutExercisesSaga from './oldWorkoutExercisesSaga';
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -23,5 +23,7 @@ export default function* rootSaga() {
     workoutsSaga(),
     exercise_eventsSaga(),
     previous_workoutsSaga(),
+    previous_workoutsSaga(),
+    oldWorkoutExercisesSaga(),
   ]);
 }

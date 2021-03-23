@@ -12,7 +12,7 @@ const Footer = () => (
     {/* &copy; Victory Athletics */}
     {/* &copy; Triumph Fitness */}
     {/* &copy; Victory Fitness */}
-    &copy; Apex Fitness
+    &copy; Apex Systems
 
   </footer>
 );

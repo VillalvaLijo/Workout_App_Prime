@@ -105,17 +105,25 @@ class NewWorkoutPage extends Component {
            <div>
            <h1>Workout: {this.props.reduxStore.workout.date}</h1>
            <div className="currentWorkoutDisplay">
+               <div className ="displayExercisesDiv">
            <DisplayExercise_EventsToDom/>
+           </div>
            {/* <button onClick={this.recordExerciseSet}>New Exercise Set</button> */}
            <ExercisesDropDownMenu/>
-           <AddExerciseButton/>
-
+           
+            <div className = "setTableSelectionDiv">
            {this.props.reduxStore.selectedExercise.exerciseSelected //select for exercises selected in the reducer, have exercises selected be a boolean.
+                        
                         ? <NewExerciseSetTable/>
-                        : <div>No Exercise Selected</div>
+                        : <div></div>
                         }
-
             </div>
+            <div className = "addExerciseDiv">
+                <h2>Add New Exercise:</h2>
+            <AddExerciseButton/>
+            </div>
+            </div>
+            
 
            {/* <newExerciseSetTable/> */}
 

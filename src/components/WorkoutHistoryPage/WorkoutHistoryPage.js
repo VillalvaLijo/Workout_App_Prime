@@ -75,6 +75,13 @@ class WorkoutHistoryPage extends Component {
             selectedWorkout_id: workout_id,
         })
 
+        this.props.dispatch({
+            type: 'GET_PREVIOUS_WORKOUT_EXERCISE_EVENTS',
+            payload: {
+                workout_id: workout_id,
+            }
+        })
+
     }
 
     //going to nee to write a component did update becuase DOM is 
@@ -97,7 +104,11 @@ class WorkoutHistoryPage extends Component {
                     {this.displayAllPreviousWorkoutsToDom()}
                 </div>
                 <div className = "displaySlectedWorkout">
-                    <DisplayOldWorkoutsToDom selectedWorkout_id = {this.state.selectedWorkout_id}/>
+                    { typeof(this.state.selectedWorkout_id) === "number"
+                    ?<DisplayOldWorkoutsToDom selectedWorkout_id = {this.state.selectedWorkout_id}
+                                            />
+                    : <div>No Workout Selected</div>
+                }
                 </div>
 
             </div>

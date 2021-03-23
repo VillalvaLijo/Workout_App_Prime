@@ -3,7 +3,7 @@
 
 const previous_workoutsReducer = (state = {}, action)=>{
 
-    if (action.type ==='MAKE_USER_WORKOUT_HISTORY_AVAILIBLE'){
+    if (action.type ==='MAKE_PREVIOUS_WORKOUTS_AVAILIBLE'){
         return action.payload
     }
     else{

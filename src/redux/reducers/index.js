@@ -7,6 +7,8 @@ import selectedExercise from './selecetedExerciseReducer';
 import workout from './workoutsReducer';
 import exercise_events from './exercise_eventsReducer';
 import previous_workouts from './previous_workoutsReducer';
+import oldWorkoutExercises from './oldWorkoutExercisesReducer'
+
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -22,6 +24,7 @@ const rootReducer = combineReducers({
   workout,
   exercise_events,
   previous_workouts,
+  oldWorkoutExercises,
 });
 
 export default rootReducer;

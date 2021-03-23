@@ -155,6 +155,7 @@ class ExercisesDropDownMenu extends Component{
         const {listOpen, headerTitle} = this.state;
         return(
             <div classname="dd-wrapper">
+                <h2>Select Exercise Set</h2>
                 <button
                     type="button"
                     classname="dd-header"

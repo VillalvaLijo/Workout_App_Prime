@@ -15,6 +15,7 @@ const exerciseRouter = require('./routes/exercises.router');
 const workoutsRouter = require('./routes/workouts.router');
 const exercise_eventsRouter = require('./routes/exercise_events.router');
 const previous_workoutsRouter = require('./routes/previous_workouts.router');
+const oldWorkoutExercisesRouter = require('./routes/oldWorkoutExercises.router');
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -33,6 +34,7 @@ app.use('/api/exercises', exerciseRouter);
 app.use('/api/workouts', workoutsRouter);
 app.use('/api/exercise_events', exercise_eventsRouter);
 app.use('/api/previous_workouts', previous_workoutsRouter);
+app.use('/api/oldWorkoutExercises', oldWorkoutExercisesRouter);
 
 // Serve static files
 app.use(express.static('build'));

@@ -1,0 +1,44 @@
+/* .exercise_eventsSetTable, .exercise_eventsTableHead, .exercise_eventsSetTable{
+    border: 1px solid black;
+} */
+
+/* .setRowsDisplay{
+    background-color: white;
+} */
+
+.setExerciseName, .setExerciseWeight, .setExerciseReps, .setDeleteButton{
+    colspan: "1";
+} 
+
+/* table, th, td {
+    border: 2px solid black;
+    border-collapse: collapse;
+  } */
+
+  
+
+  /* .exercisesColumn, .weightColumn, .repsColumn, .repsColumn, .deleteColum{
+      column-width: 50px;
+
+  } */
+  .th{
+      height: 50px;
+  }
+
+  .exercise_events_table{
+      width: auto;
+  }
+
+  .specificSetRow{
+    border: 2px solid black;
+    width: 100%;
+    align-items: center;
+  }
+
+  .exercise_eventsSetTable{
+      /* width:auto;
+      column-width: 25px; */
+      /* border-spacing: 30px;
+      column-gap: 40px; */
+      width: 100%;
+  }

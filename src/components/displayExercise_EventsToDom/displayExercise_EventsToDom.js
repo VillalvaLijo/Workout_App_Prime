@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import './DisplayExercise_EventsToDom.css';
 
 
 class DisplayExercise_EventsToDom extends Component{
@@ -42,16 +43,26 @@ class DisplayExercise_EventsToDom extends Component{
         console.log("inside displayExerciseEvents, this.props.reduxStore.exercise_events", this.props.reduxStore.exercise_events);
          if(this.props.reduxStore.exercise_events.length>=1){
              let exerciseArray = this.props.reduxStore.exercise_events.map((set) =>
-             <div className = "setRowsDisplay" key={set.id}>
-                 <tr className = "specificSetRow">
-                     <td className = "setExerciseName">{set.exercise_name}</td>
-                    <td className = "setExerciseWeight">{set.weight}</td>
-                    <td className = "setExerciseReps">{set.reps}</td>
-                    <td className = "setDeleteButton"><button type = 'button' onClick = {()=>this.deleteExercise_Event(set.id)}>Delete Set</button></td>
+             
+                 <tr className = "specificSetRow" key={set.id}>
+                     <td className = "setExerciseName" colspan="1">{set.exercise_name}</td>
+                    <td className = "setExerciseWeight" colspan="1">{set.weight}</td>
+                    <td className = "setExerciseReps" colspan = "1">{set.reps}</td>
+                    <td className = "setDeleteButton" colspan ="1"><button type = 'button' onClick = {()=>this.deleteExercise_Event(set.id)}>Delete Set</button></td>
                  </tr>
-             </div>)
+             )
 
-            return exerciseArray;
+            return (
+                <table className = "exercise_eventsSetTable">
+                    <tr className = "exercise_eventsTableHead">
+                        <th className = "exercisesColumn"colSpan="1">Exercise</th>
+                        <th className="weightColumn"colSpan="1">Weight</th>
+                        <th className="repsColumn" colSpan="1">Reps</th>
+                        <th className="deleteColumn" colSpan="1">Delete</th>
+                    </tr>
+                    {exerciseArray}
+                </table> 
+                );
          }
     }
     
@@ -63,16 +74,10 @@ class DisplayExercise_EventsToDom extends Component{
                 exercise name
                 weight used
                 reps performed */}
-                <table className = "exercise_eventsSetTable">
-                    <tr className = "exercise_eventsTableHead">
-                        <th>Exercise</th>
-                        <th>Weight</th>
-                        <th>Reps</th>
-                        <th>Delete</th>
-                    </tr>
-                    {this.displayExercise_Events()}
-                </table>
-
+                <h2>
+                    Your Exercises:
+                </h2>
+                {this.displayExercise_Events()}
 
             </div>
         )

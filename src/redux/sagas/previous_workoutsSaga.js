@@ -11,7 +11,7 @@ function* getPrevious_WorkoutsFromDatabase(action){
     try{
         const previous_workoutsResponse = yield axios.get(`api/previous_workouts?user_id=${user_id}`);
 
-        yield put({type: 'MAKE_USER_WORKOUT_HISTORY_AVAILIBLE', payload: previous_workoutsResponse.data})
+        yield put({type: 'MAKE_PREVIOUS_WORKOUTS_AVAILIBLE', payload: previous_workoutsResponse.data})
     }catch(error){
         console.log('error with getPrevious_workouts GET request');
     }
